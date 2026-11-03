@@ -1,4 +1,11 @@
 # ---------------------------------------------------
+# COMO RODAR: copie cada linha sem o # do inicio
+#   cd ~/DEV/Compiladores/compilador-d/analisador-lexico
+#   python3 main.py testes/exemplo.d
+#   python3 main.py testes/erros.d
+# ---------------------------------------------------
+
+# ---------------------------------------------------
 # Analisador lexico da linguagem D
 # Tabela de tokens: lista todos os tipos de token que existem na linguagem
 # ---------------------------------------------------

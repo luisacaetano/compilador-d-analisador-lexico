@@ -1,4 +1,11 @@
 # ---------------------------------------------------
+# COMO RODAR: copie cada linha sem o # do inicio
+#   cd ~/DEV/Compiladores/compilador-d/analisador-lexico
+#   python3 main.py testes/exemplo.d
+#   python3 main.py testes/erros.d
+# ---------------------------------------------------
+
+# ---------------------------------------------------
 # Analisador lexico da linguagem D
 # Programa principal: imprime a sequencia de tokens de um arquivo fonte
 #
