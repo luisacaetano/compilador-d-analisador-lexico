@@ -58,10 +58,10 @@ if __name__ == '__main__':
     lexico = Lexico(arqfonte)
     arqfonte.close()
 
-    # pede um token por vez e imprime, ate chegar ao fim do arquivo
+    # pede um token por vez e imprime; para no primeiro erro ou no fim do arquivo
     tokenLido = lexico.getToken()
-    while tokenLido[0] != TOKEN.eof:
+    while tokenLido[0] not in [TOKEN.eof, TOKEN.erro]:
         lexico.imprimeToken(tokenLido)
         tokenLido = lexico.getToken()
-    # imprime tambem o proprio <eof>
+    # imprime tambem o token que parou a leitura: o erro ou o <eof>
     lexico.imprimeToken(tokenLido)
