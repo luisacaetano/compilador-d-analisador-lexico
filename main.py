@@ -1,16 +1,17 @@
 # ---------------------------------------------------
 # Analisador lexico da linguagem D
-# Imprime a sequencia de tokens de um arquivo fonte
+# Programa principal: imprime a sequencia de tokens de um arquivo fonte
 #
 # uso: python3 main.py [arquivo.d]
 # ---------------------------------------------------
-import os
-import sys
+import os        # usado para verificar se o arquivo existe
+import sys       # argumentos da linha de comando e encerramento do programa
 
 from ttoken import TOKEN
 from lexico import Lexico
 
 
+# detectaCodificacao: descobre como os bytes do arquivo devem ser lidos
 def detectaCodificacao(caminho):
     # o fonte pode estar em utf-8 ou latin-1; latin-1 aceita qualquer byte
     # e serve de ultimo recurso
@@ -23,6 +24,7 @@ def detectaCodificacao(caminho):
         return 'latin-1'
 
 
+# abreFonte: abre o arquivo; se nao conseguir, mostra o motivo e encerra
 def abreFonte(caminho):
     try:
         codificacao = detectaCodificacao(caminho)
@@ -32,7 +34,9 @@ def abreFonte(caminho):
         sys.exit(1)
 
 
+# so executa quando este arquivo e rodado diretamente
 if __name__ == '__main__':
+    # sys.argv[0] e o main.py; sys.argv[1] e o arquivo informado, se houver
     if len(sys.argv) > 1:
         caminho = sys.argv[1]
     else:
@@ -42,12 +46,15 @@ if __name__ == '__main__':
             print('uso: python3 main.py <arquivo.d>')
             sys.exit(1)
 
+    # o lexico le o fonte inteiro no construtor, entao o arquivo pode ser fechado
     arqfonte = abreFonte(caminho)
     lexico = Lexico(arqfonte)
     arqfonte.close()
 
+    # pede um token por vez e imprime, ate chegar ao fim do arquivo
     tokenLido = lexico.getToken()
     while tokenLido[0] != TOKEN.eof:
         lexico.imprimeToken(tokenLido)
         tokenLido = lexico.getToken()
+    # imprime tambem o proprio <eof>
     lexico.imprimeToken(tokenLido)
